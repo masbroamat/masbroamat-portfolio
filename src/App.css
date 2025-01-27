@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* font-family: 'Cal Sans', sans-serif; */
+  transition: all 0.3s ease-in-out;
+}
+
+:root {
+  --primary-color: #121212;
+  --diamond-color: #151515;
+  --sidebar-color: #212120;
+  --tag-color: #5f5f5f;
+  --testBox-color: #131313;
+}
+
+body {
+  /* cursor: none; */ /* <-- uncomment this and <CursorGlow /> component in App.jsx to enable custom cursor */
+}
+
+main {
+  background-image: url("/src/assets/mainbg.png");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+@layer components {
+  .title_gradient {
+    @apply bg-gradient-to-br from-[rgb(130,130,130)] via-[rgb(231,231,231)] to-[#5f5f5f67] bg-clip-text text-transparent;
+  }
+}
+
+.button_gradient {
+  @apply bg-gradient-to-br from-[rgb(163,163,172)] to-[rgb(238,238,240)];
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 9px;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.button_gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, #e8e8ea, #efeff1);
+  border-radius: 7px;
+  padding: 1px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  background-clip: border-box;
+}
+
+.button_gradient > p {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.diamond-wrapper {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  /* transform: rotate(45deg); */
+}
+
+.diamond-wrapper::before, .testBox::before {
+  background: radial-gradient(
+    300px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.08),
+    transparent 40%
+  );
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+  z-index: 2;
+}
+
+.diamond-wrapper:hover::before, .testBox:hover::before{
+    opacity: 1;
+}
+
+.diamond-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--diamond-color);
+  border-radius: 8px;
+  position: relative;
+  overflow: visible;
+  border: 1.5px solid #333333;
+}
+
+.diamond-container::before {
+  content: "";
+  position: absolute;
+  top: -1.5px; /*border width*/
+  left: -1.5px;
+  right: -1.5px;
+  bottom: -1.5px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 1)
+  );
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.diamond-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-45deg);
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.diamond-position {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.diamonds-container {
+  transform-origin: top left;
+  gap: 6px;
+  position: absolute;
+  top: 10vh;
+  left: 58%;
+  transform: rotate(45deg);
+}
+
+.diamond-child {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 56%;
+  left: -7%;
+  transform: translate(-50%, -50%);
+  width: 38%;
+  transform: scale(450%) rotate(-45deg);
+}
+
+.hero-image .mainimg {
+  width: 100%;
+  height: auto;
+  filter: contrast(120%) brightness(110%);
+  --tw-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-image .imgblur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(152px);
+  z-index: -1;
+  opacity: 64%;
+}
+
+.hero-image .imgshadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.sidebar-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--diamond-color);
+  border-radius: 41px;
+  position: relative;
+  overflow: visible;
+  border: 2px solid #333333c8;
+}
+
+.sidebar-container::before {
+  content: "";
+  position: absolute;
+  top: -1.5px; /*border width*/
+  left: -1.5px;
+  right: -1.5px;
+  bottom: -1.5px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.395),
+    rgb(0, 0, 0)
+  );
+  z-index: -1;
+  border-radius: 44px;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-wrapper {
+  width: 357px;
+  height: fit-content;
+  position: relative;
+}
+
+.card-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--diamond-color);
+  border-radius: 8px;
+  position: relative;
+  overflow: visible;
+  border: 2.5px solid #333333a7;
+}
+
+.card-container::before {
+  content: "";
+  position: absolute;
+  top: -1.5px; /*border width*/
+  left: -1.5px;
+  right: -1.5px;
+  bottom: -1.5px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.516),
+    rgba(0, 0, 0, 1)
+  );
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.tagsText {
+  background-color: var(--tag-color);
+}
+
+.testBox {
+  background-color: var(--testBox-color);
+  height: 100%;
+  padding: 2rem;
+  border-radius: 13px;
+  position: relative;
+  border: 1px solid var(--sidebar-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--testBox-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 5px;
+  border: 1.5px solid var(--tag-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tag-color);
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--tag-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 8px 2px var(--tag-color);
+  transition: none;
+}
