@@ -1,11 +1,10 @@
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-// import resume from "/resume.pdf";
 
 const Navbar = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "resume.pdf";
+    link.href = "/CV.pdf";
+    link.download = "CV.pdf";
     link.click();
   };
 
@@ -20,7 +19,7 @@ const Navbar = () => {
           onClick={handleDownload}
         >
           <p className="font-medium flex justify-center items-center gap-6 hover:scale-105">
-            Resume <FileDownloadOutlinedIcon />{" "}
+            CV <FileDownloadOutlinedIcon />{" "}
           </p>
         </button>
       </div>
